@@ -1,9 +1,9 @@
-export function renderHome() {
-    let divP = document.getElementById("content");
+export function renderHome(tab) {
+    //let divP = document.getElementsByClassName("tab");
     let divA = document.createElement("div");
     divA.className = "tabcontent";
     divA.id = "home";
-    divP.appendChild(divA);
+    tab.appendChild(divA);
 
     let header = document.createElement("h1");
     header.textContent = "Liverpool FC Site";

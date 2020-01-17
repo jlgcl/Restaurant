@@ -1,6 +1,12 @@
 /*  THE ODIN PROJECT - JAVASCRIPT - RESTAURANT PAGE PROJECT
 
-STATUS: can't get elements to show in HTML DOM.
+STATUS: 
+- event handler not recognized (STUCKED)
+    answer) resolved issue with use of addEventListener; onclick with reference code (commented out) gave so many errors:
+        - ERROR: event not recognized (undefined) for currentTarget.
+        - ERROR: contents not clearing
+        - IDK: what the reference code is trying to do with "tablinks" classes by making them "active".
+- continue with adding contents to the page & adjust styling.
 
 */
 
@@ -8,36 +14,51 @@ import { renderHome } from './home.js';
 import { renderSquad } from './squad.js';
 
 function main () {
-    let tab = document.createElement("tab");
-    let body = document.getElementsByTagName("BODY")[0];    //LEARNED: to get "body" tag, must use this method.
-    body.appendChild(tab);
+    let tab = document.createElement("div");
+    tab.className = "tab";
+    //let body = document.getElementsByTagName("BODY")[0];    //LEARNED: to get "body" tag, must use this method.
+    let content = document.getElementById("content");
+    content.appendChild(tab);
 
     let button1 = document.createElement("button");
-    button1.class = "tablinks";
-    button1.onclick = "openPage(event, 'home')";
+    button1.class = "tablinks";    
     button1.innerHTML = "Home";
     tab.appendChild(button1);
+    renderHome(tab);
     
     let button2 = document.createElement("button");
     button2.class = "tablinks";
-    button2.onclick = "openPage(event, 'squad')";
     button2.innerHTML = "Squad";
     tab.appendChild(button2);
+    renderSquad(tab);
+
+    //button1.onclick = openPage(event, 'home');  //LEARNED: .onclick is better than setAttribute("onclick", function());
+    //button2.onclick = openPage(event, 'squad');
     
+    /*
     let button3 = document.createElement("button");
     button3.class = "tablinks";
-    button3.onclick = "openPage(event, 'home')";
+    button3.setAttribute("onclick", openPage(event, 'contact'));
     button3.innerHTML = "Contact";
     tab.appendChild(button3);
-    
-    renderHome();
-    renderSquad();
-    openPage();
+    */
 
+    button1.addEventListener("click", function(){
+        document.getElementById("home").style.display = "block";
+    })
+
+    button2.addEventListener("click", function(){
+
+       document.getElementsByClassName("tabcontent")[0].style.display = "none";
+       document.getElementsByClassName("tabcontent")[1].style.display = "block";
+    })
 }
 
+
+/*
 function openPage(evt, pageName) {
   // Declare all variables
+
   var i, tabcontent, tablinks;
 
   // Get all elements with class="tabcontent" and hide them
@@ -45,6 +66,7 @@ function openPage(evt, pageName) {
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
+
 
   // Get all elements with class="tablinks" and remove the class "active"
   tablinks = document.getElementsByClassName("tablinks");
@@ -54,7 +76,8 @@ function openPage(evt, pageName) {
 
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(pageName).style.display = "block";
-  evt.currentTarget.className += " active";
+  evt.currentTarget.className += " active";   //SO FAR: enabling/disabling this line shows different tabs.
 }
+*/
 
 main();
