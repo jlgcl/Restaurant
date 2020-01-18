@@ -35,6 +35,8 @@ h2 {
 
 img {
     margin-left: 35%;
+    width: 30%;
+    height: 30%;
 }
 
 .buttons {
@@ -55,4 +57,19 @@ button {
 
 button:focus {
     background-color: rgba(255, 0, 0, 0.712);
+}
+
+#pName1 {
+    width: 30%;
+    height: 30%;
+}
+
+#pName2 {
+    width: 30%;
+    height: 30%;
+    display: block;
+}
+
+#squad {
+    display: inline;
 }

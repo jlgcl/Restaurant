@@ -24,13 +24,14 @@ function main () {
     button1.class = "tablinks";    
     button1.innerHTML = "Home";
     tab.appendChild(button1);
-    renderHome(tab);
     
     let button2 = document.createElement("button");
     button2.class = "tablinks";
     button2.innerHTML = "Squad";
     tab.appendChild(button2);
-    renderSquad(tab);
+
+    renderHome(content);
+    renderSquad(content);
 
     //button1.onclick = openPage(event, 'home');  //LEARNED: .onclick is better than setAttribute("onclick", function());
     //button2.onclick = openPage(event, 'squad');
@@ -43,14 +44,18 @@ function main () {
     tab.appendChild(button3);
     */
 
+    //tabcontent load conditions upon page load:
+    document.querySelectorAll(".tabcontent")[1].style.display = "none";
+
+    //LEARNED: order of tabcontent element matters ("block" first then "none").
     button1.addEventListener("click", function(){
-        document.getElementById("home").style.display = "block";
+        document.querySelectorAll(".tabcontent")[0].style.display = "block";
+        document.querySelectorAll(".tabcontent")[1].style.display = "none";
     })
 
     button2.addEventListener("click", function(){
-
-       document.getElementsByClassName("tabcontent")[0].style.display = "none";
-       document.getElementsByClassName("tabcontent")[1].style.display = "block";
+       document.querySelectorAll(".tabcontent")[1].style.display = "block";
+       document.querySelectorAll(".tabcontent")[0].style.display = "none";
     })
 }
 
